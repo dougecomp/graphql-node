@@ -9,7 +9,7 @@ async function makeGraphQLServer () {
     resolvers: [CategoryResolver, VideoResolver]
   })
 
-  const server = new ApolloServer({ schema })
+  const server = new ApolloServer({ schema, cors: true })
   server.listen({ port: 4100 }, () => console.log('GraghQL server running'))
 }
 
