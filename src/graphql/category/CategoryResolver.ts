@@ -5,10 +5,10 @@ import { Category } from './Category'
 @InputType()
 class CategoryInput {
     @Field()
-    name: String;
+    name: string;
 
     @Field()
-    description: String;
+    description: string;
 }
 
 @Resolver(Category)
@@ -20,7 +20,9 @@ class CategoryResolver {
   }
 
   @Mutation(() => Category)
-  async createCategory (@Arg('categoryInput') categoryInput: CategoryInput) {
+  async createCategory (
+    @Arg('categoryInput') categoryInput: CategoryInput
+  ) {
     const category = await CategoryModel.create(categoryInput)
     return category
   }

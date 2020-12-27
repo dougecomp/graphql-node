@@ -1,8 +1,9 @@
-import { Field, ObjectType } from 'type-graphql'
+import { ObjectId } from 'mongoose'
+import { Field, ID, ObjectType } from 'type-graphql'
 
 @ObjectType()
 class Video {
-    @Field()
+    @Field(type => ID)
     _id: string;
 
     @Field()
@@ -10,6 +11,9 @@ class Video {
 
     @Field()
     description: string;
+
+    @Field()
+    category: ObjectId;
 }
 
 export { Video }

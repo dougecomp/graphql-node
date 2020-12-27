@@ -1,16 +1,18 @@
-import { Resolver, Query, Arg, Field, Mutation } from 'type-graphql'
+import { Resolver, Query, Arg, Field, Mutation, InputType } from 'type-graphql'
 import { VideoModel } from '../../models/VideoModel'
+import { Category } from '../category/Category'
 import { Video } from './Video'
 
+@InputType()
 class VideoInput {
     @Field()
-    name: String;
+    name: string;
 
     @Field()
-    description: String;
+    description: string;
 
     @Field()
-    category: string;
+    category: Category;
 }
 
 @Resolver(Video)
@@ -22,7 +24,9 @@ class VideoResolver {
   }
 
   @Mutation(() => Video)
-  async createVideos (@Arg('videoInput') videoInput: VideoInput) {
+  async createVideos (
+    @Arg('videoInput') videoInput: VideoInput
+  ) {
     const category = await VideoModel.create(videoInput)
     return category
   }

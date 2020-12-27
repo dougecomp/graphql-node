@@ -1,5 +1,13 @@
 import mongoose from 'mongoose'
 
+interface IMongooseVideoDocument extends mongoose.Document {
+  name: string;
+
+  description: string;
+
+  category: mongoose.Schema.Types.ObjectId;
+}
+
 const Schema = new mongoose.Schema({
   name: {
     type: String,
@@ -15,6 +23,6 @@ const Schema = new mongoose.Schema({
   }
 })
 
-const VideoModel = mongoose.model('Videos', Schema)
+const VideoModel = mongoose.model<IMongooseVideoDocument>('Videos', Schema)
 
 export { VideoModel }
